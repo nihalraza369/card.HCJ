@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glowing Feature Card</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      width: 320px;
+      padding: 30px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border: 2px solid transparent;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeSlideIn 1s ease forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card:hover {
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 20px #00ffff88, 0 0 30px #00ffff55;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #ddd;
+    }
+
+    .card button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .card button:hover {
+      background: #00dddd;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🚀 Speed & Performance</h2>
+    <p>This feature card highlights your product's top feature — fast, efficient, and optimized for performance.</p>
+    <button onclick="alert('Explore More')">Learn More</button>
+  </div>
+
+</body>
+</html>
