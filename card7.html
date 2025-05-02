@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sliding Glass Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
+      animation: gradientSlide 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    @keyframes gradientSlide {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      width: 360px;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.15);
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      position: relative;
+      text-align: center;
+      transition: 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #00ffff99, 0 0 40px #00ffff55;
+    }
+
+    .icon {
+      font-size: 50px;
+      animation: floatIcon 2s ease-in-out infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #eee;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #00ffff;
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #00dddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="icon">🚀</div>
+    <h2>Next-Gen Card</h2>
+    <p>Smooth animated gradient background meets glassmorphism UI — made for futuristic web designs.</p>
+    <button onclick="alert('Slidin’ into the future!')">Slide More</button>
+  </div>
+
+</body>
+</html>
