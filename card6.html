@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Neon Glassmorphism Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 340px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: 0.5s;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 25px #00ffff88, 0 0 50px #00ffff55;
+      transform: scale(1.03);
+    }
+
+    .pulse-ring {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle, #00ffff22, transparent 60%);
+      animation: pulse 3s infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 0.3; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 40px;
+      animation: float 2s ease-in-out infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #00dddd;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="pulse-ring"></div>
+    <div class="card-content">
+      <div class="icon">🌌</div>
+      <h2>Futuristic UI</h2>
+      <p>Experience the cutting-edge design with neon glow, glass blur, and dynamic animations all in one card.</p>
+      <button onclick="alert('Next Level Activated')">Explore</button>
+    </div>
+  </div>
+
+</body>
+</html>
