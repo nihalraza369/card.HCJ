@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Card</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px 25px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .card p {
+      font-size: 16px;
+      color: #555;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .card button {
+      background-color: #6c5ce7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .card button:hover {
+      background-color: #4834d4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>About This Card</h2>
+    <button onclick="toggleText()">Show More</button>
+    <p id="cardText">This is an interactive card. You clicked the button to reveal this hidden content. Cool, right?</p>
+  </div>
+
+  <script>
+    function toggleText() {
+      const text = document.getElementById('cardText');
+      text.style.display = text.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>
