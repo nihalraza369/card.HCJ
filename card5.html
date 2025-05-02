@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Interactive Card</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 320px;
+      height: 400px;
+      background: linear-gradient(135deg, #111111, #1c1c1c);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+      transition: transform 0.1s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, #00f7ff, #ff00cc);
+      animation: rotate 6s linear infinite;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #ccc;
+    }
+
+    .card button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ffff;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .card button:hover {
+      background: #00dddd;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="interactiveCard">
+    <div class="card-content">
+      <h2>🧠 Smart Design</h2>
+      <p>Experience next-level UI with smooth 3D interaction, glowing borders, and modern hover effects.</p>
+      <button onclick="alert('Wow!')">Try It</button>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('interactiveCard');
+
+    card.addEventListener('mousemove', (e) => {
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    });
+  </script>
+
+</body>
+</html>
