@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glassmorphism Profile Card</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      width: 300px;
+      text-align: center;
+      padding: 30px 20px;
+      color: #fff;
+    }
+
+    .glass-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #ffffff88;
+      margin-bottom: 15px;
+    }
+
+    .glass-card h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .glass-card p {
+      font-size: 14px;
+      margin: 5px 0 20px;
+      color: #ddd;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons i {
+      font-size: 20px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .social-icons i:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="glass-card">
+    <img src="https://i.pravatar.cc/150?img=13" alt="Profile" />
+    <h2>Nihal Raza</h2>
+    <p>Frontend Developer</p>
+    <div class="social-icons">
+      <i class="fab fa-facebook-f" onclick="alert('Facebook Clicked')"></i>
+      <i class="fab fa-twitter" onclick="alert('Twitter Clicked')"></i>
+      <i class="fab fa-linkedin-in" onclick="alert('LinkedIn Clicked')"></i>
+    </div>
+  </div>
+
+</body>
+</html>
