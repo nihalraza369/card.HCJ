@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inferno Pulse Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      background: radial-gradient(#1a0000, #000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .lava-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-radial-gradient(circle at 50% 50%, #ff4d00 0%, transparent 2%),
+                  repeating-radial-gradient(circle at 70% 40%, #ff2200 0%, transparent 1.5%);
+      animation: moveLava 10s infinite linear;
+      z-index: -1;
+      opacity: 0.2;
+      filter: blur(10px);
+    }
+
+    @keyframes moveLava {
+      from { transform: scale(1) rotate(0deg); }
+      to { transform: scale(1.2) rotate(360deg); }
+    }
+
+    .card {
+      width: 340px;
+      height: 440px;
+      border-radius: 20px;
+      background: rgba(30, 0, 0, 0.5);
+      box-shadow: 0 0 30px rgba(255, 50, 0, 0.4);
+      border: 2px solid rgba(255, 70, 0, 0.6);
+      backdrop-filter: blur(15px);
+      transition: 0.4s ease;
+      padding: 30px;
+      color: white;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      box-shadow: 0 0 30px 5px #ff3c00;
+      opacity: 0.2;
+      animation: flicker 1.5s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
+
+    .card h2 {
+      font-size: 26px;
+      color: #ff3c00;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #ffdfcc;
+      line-height: 1.6;
+    }
+
+    .fire-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #ff3c00, #ff0000, #ff6600, #ff3c00);
+      margin: 20px auto;
+      animation: spinFire 4s linear infinite;
+      box-shadow: 0 0 25px #ff3300aa;
+    }
+
+    @keyframes spinFire {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: #ff3c00;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #cc2e00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lava-bg"></div>
+
+  <div class="card" id="infernoCard">
+    <div class="fire-ring"></div>
+    <h2>Inferno Pulse</h2>
+    <p>This molten core holds the energy of ancient flames. Watch it burn, flicker, and pulse with power.</p>
+    <button onclick="alert('🔥 Fire Activated!')">Ignite</button>
+  </div>
+
+  <script>
+    // Tilt effect
+    const card = document.getElementById("infernoCard");
+
+    card.addEventListener("mousemove", (e) => {
+      const bounds = card.getBoundingClientRect();
+      const x = (e.clientX - bounds.left - bounds.width / 2) / 20;
+      const y = (e.clientY - bounds.top - bounds.height / 2) / 20;
+      card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "rotateY(0deg) rotateX(0deg)";
+    });
+  </script>
+
+</body>
+</html>
