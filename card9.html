@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Neon Pulse Card</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #000c1f, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 360px;
+      height: 440px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(25px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 60px #00ffff55, 0 0 90px #00ffff22;
+    }
+
+    .pulse-border {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: conic-gradient(from 0deg, #00ffff55, transparent 30%, #00ffff22, transparent 60%);
+      animation: pulse 6s linear infinite;
+      z-index: 0;
+      filter: blur(20px);
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 30px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      animation: float 2.5s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #00ffff;
+    }
+
+    p {
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00dddd;
+    }
+
+    /* Ripple effect on hover */
+    .card::after {
+      content: "";
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+      width: 0;
+      height: 0;
+      background: rgba(0, 255, 255, 0.4);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ripple 1s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="magicCard">
+    <div class="pulse-border"></div>
+    <div class="content">
+      <div class="icon">🧠</div>
+      <h2>Neon Intelligence</h2>
+      <p>This futuristic glass card is alive with light, waves, and energy. Feel the digital flow.</p>
+      <button onclick="alert('Digitally Zapped!')">Glow More</button>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('magicCard');
+
+    // Ripple effect
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+    });
+
+    // Tilt effect
+    card.addEventListener('mousemove', e => {
+      const { left, top, width, height } = card.getBoundingClientRect();
+      const x = (e.clientX - left - width / 2) / 20;
+      const y = (e.clientY - top - height / 2) / 20;
+      card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    });
+  </script>
+
+</body>
+</html>
