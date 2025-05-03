@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy Crystal Card</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .stars-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(#0d1b2a, #000);
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .stars-bg::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: repeating-radial-gradient(circle at 50% 50%, white 0px, transparent 1px);
+      opacity: 0.3;
+      animation: starsMove 80s linear infinite;
+    }
+
+    @keyframes starsMove {
+      from { transform: translate(-25%, -25%); }
+      to { transform: translate(0%, 0%); }
+    }
+
+    .card {
+      width: 360px;
+      height: 460px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(18px);
+      transition: 0.4s;
+      position: relative;
+      transform-style: preserve-3d;
+      padding: 30px;
+      color: white;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 60px #00f0ff80, inset 0 0 12px #00ffe077;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      color: #00f0ff;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    .planet {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 25px;
+      background: radial-gradient(#00d0ff, #002340);
+      border-radius: 50%;
+      box-shadow: 0 0 20px #00d0ff80;
+      animation: rotate 12s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.05); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 24px;
+      background: #00f0ff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00c4d6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars-bg"></div>
+
+  <div class="card" id="galaxyCard">
+    <div class="planet"></div>
+    <h2>Galaxy Crystal</h2>
+    <p>Step into the void — this card holds a glass-encased piece of the universe, glowing with deep energy.</p>
+    <button onclick="alert('🚀 Lift off!')">Explore</button>
+  </div>
+
+  <script>
+    // Tilt on mouse move
+    const galaxyCard = document.getElementById('galaxyCard');
+
+    galaxyCard.addEventListener('mousemove', (e) => {
+      const bounds = galaxyCard.getBoundingClientRect();
+      const x = (e.clientX - bounds.left - bounds.width / 2) / 20;
+      const y = (e.clientY - bounds.top - bounds.height / 2) / 20;
+      galaxyCard.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+
+    galaxyCard.addEventListener('mouseleave', () => {
+      galaxyCard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  </script>
+
+</body>
+</html>
