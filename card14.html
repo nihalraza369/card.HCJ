@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Galaxy Pulse Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://i.ibb.co/GF6bGpL/stars.gif') repeat;
+      animation: moveStars 100s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: 0 2000px; }
+    }
+
+    .card {
+      width: 360px;
+      height: 460px;
+      background: rgba(0, 0, 30, 0.4);
+      border: 1px solid rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+      color: #fff;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 80px rgba(0, 255, 255, 0.6);
+    }
+
+    .pulse {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00f0ff 20%, transparent 70%);
+      animation: pulseGlow 2s infinite;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      color: #00f7ff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 14px;
+      color: #bff;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: #88f;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="card" id="galaxyCard">
+    <div class="pulse"></div>
+    <h2>Galaxy Access Portal</h2>
+    <p>Welcome, Nihal Raza.<br />Level 9 Interstellar Clearance Verified.</p>
+    <div class="footer"># InterGalactic AI Division</div>
+  </div>
+
+  <script>
+    const card = document.getElementById("galaxyCard");
+
+    card.addEventListener("mousemove", (e) => {
+      const { offsetX, offsetY } = e;
+      const x = (offsetX / card.offsetWidth - 0.5) * 20;
+      const y = (offsetY / card.offsetHeight - 0.5) * 20;
+      card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    });
+  </script>
+</body>
+</html>
