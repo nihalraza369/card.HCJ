@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inferno Blaze Card</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .fire-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, #ff3c00 0%, #000 80%);
+      z-index: -2;
+      animation: flicker 4s infinite ease-in-out;
+    }
+
+    @keyframes flicker {
+      0%, 100% { background: radial-gradient(ellipse at center, #ff3c00, #000); }
+      50% { background: radial-gradient(ellipse at center, #ff6d00, #000); }
+    }
+
+    .card {
+      width: 360px;
+      height: 460px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      border: 2px solid #ff6a00;
+      box-shadow: 0 0 20px #ff4500aa;
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 35px #ff6a00aa, 0 0 80px #ff4d00aa;
+    }
+
+    .pulse-ring {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, #ff6d00, transparent);
+      border-radius: 50%;
+      animation: pulse 2s infinite ease-in-out;
+      z-index: 0;
+      filter: blur(30px);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+      50% { transform: translateX(-50%) scale(1.4); opacity: 0.1; }
+    }
+
+    .sparks {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #ffb347 2px, transparent 2px),
+                        radial-gradient(circle, #ffdd87 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      animation: moveSpark 3s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes moveSpark {
+      0% { background-position: 0 0, 15px 15px; }
+      100% { background-position: 30px 30px, 45px 45px; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 30px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #ff4f00;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #ff4d00;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff2200;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fire-bg"></div>
+
+  <div class="card" id="fireCard">
+    <div class="pulse-ring"></div>
+    <div class="sparks"></div>
+    <div class="content">
+      <div class="icon">🔥</div>
+      <h2>Inferno Blaze</h2>
+      <p>This card is on fire! Pure glowing energy, lit with sparks and animated pulse. Feel the heat!</p>
+      <button onclick="alert('🔥 Burn bright!')">Ignite</button>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('fireCard');
+
+    // Tilt effect
+    card.addEventListener('mousemove', e => {
+      const { left, top, width, height } = card.getBoundingClientRect();
+      const x = (e.clientX - left - width / 2) / 20;
+      const y = (e.clientY - top - height / 2) / 20;
+      card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    });
+  </script>
+
+</body>
+</html>
